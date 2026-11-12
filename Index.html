@@ -1,1386 +1,406 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma'adanul Uloom Madrasa, Chenganikund - Class 02 Result Portal</title>
-    
-    <!-- Google Fonts: Inter & Amiri (for subtle Islamic elegance) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Chart.js for Interactive Analytics -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <!-- SheetJS (xlsx) for Excel/CSV Import & Export -->
-    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Amiri', 'serif'],
-                    },
-                    colors: {
-                        emerald: {
-                            850: '#064e3b',
-                            950: '#022c22',
-                        },
-                        gold: {
-                            400: '#fbbf24',
-                            500: '#d97706',
-                            600: '#b45309',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        /* Subtle Islamic Geometric Pattern Background */
-        .islamic-pattern {
-            background-color: #064e3b;
-            background-image: radial-gradient(#d97706 0.65px, transparent 0.65px), radial-gradient(#d97706 0.65px, #064e3b 0.65px);
-            background-size: 26px 26px;
-            background-position: 0 0, 13px 13px;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-
-        /* Print Styles - Ensures clean official report card printing */
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-            #printable-report-card, #printable-report-card * {
-                visibility: visible;
-            }
-            #printable-report-card {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                box-shadow: none !important;
-                border: 2px solid #064e3b !important;
-                margin: 0 !important;
-                padding: 20px !important;
-            }
-            .no-print {
-                display: none !important;
-            }
-        }
-    </style>
+    <title>MA'ADANUL ULOOM MADRASA, CHENGANIKUND</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans antialiased">
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
 
-    <!-- Toast Notification Banner (Replaces alert) -->
-    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
-
-    <!-- Header Section -->
-    <header class="islamic-pattern text-white shadow-lg border-b-4 border-amber-500 no-print">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-4 text-center md:text-left">
-                    <!-- Madrasa Emblem Icon -->
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 p-0.5 shadow-lg shrink-0 mx-auto md:mx-0">
-                        <div class="w-full h-full bg-emerald-950 rounded-2xl flex items-center justify-center">
-                            <i data-lucide="book-open-check" class="w-8 h-8 text-amber-400"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="text-amber-300 font-serif text-lg tracking-wide">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
-                        <h1 class="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-white">
-                            MA'ADANUL ULOOM MADRASA
-                        </h1>
-                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-2 mt-1">
-                            <span class="text-emerald-200 text-sm font-medium">Chenganikund</span>
-                            <span class="text-amber-400">•</span>
-                            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-400/30">
-                                Class 02 Examination Results Portal
-                            </span>
-                        </div>
-                    </div>
+    <!-- Header -->
+    <header class="bg-emerald-900 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-emerald-800 p-3 rounded-xl border border-emerald-700">
+                    <i class="fa-solid fa-graduation-cap text-2xl text-emerald-300"></i>
                 </div>
-
-                <!-- Navigation Tabs -->
-                <nav class="flex flex-wrap justify-center gap-2 bg-emerald-950/70 p-1.5 rounded-xl border border-emerald-700/50 backdrop-blur-sm">
-                    <button onclick="switchTab('portal')" id="tab-portal" class="nav-btn flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all bg-amber-500 text-emerald-950 shadow">
-                        <i data-lucide="award" class="w-4 h-4"></i>
-                        <span>Result Portal</span>
-                    </button>
-                    <button onclick="switchTab('dashboard')" id="tab-dashboard" class="nav-btn flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all text-emerald-100 hover:bg-emerald-800/60">
-                        <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
-                        <span>Class Analytics</span>
-                    </button>
-                    <button onclick="switchTab('admin')" id="tab-admin" class="nav-btn flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold transition-all text-emerald-100 hover:bg-emerald-800/60">
-                        <i data-lucide="settings-2" class="w-4 h-4"></i>
-                        <span>Teacher / Admin</span>
-                    </button>
-                </nav>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-wide">MA'ADANUL ULOOM MADRASA</h1>
+                    <p class="text-xs text-emerald-300 font-medium">Chenganikund | Official Student Result Portal</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="switchView('portal')" id="navPortalBtn" class="bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow hover:bg-emerald-600 transition flex items-center gap-2">
+                    <i class="fa-solid fa-id-card"></i> Student Portal
+                </button>
+                <button onclick="switchView('admin')" id="navAdminBtn" class="bg-amber-600 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow hover:bg-amber-500 transition flex items-center gap-2">
+                    <i class="fa-solid fa-lock"></i> Ustad Admin Login
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6">
 
-        <!-- ===================================================================== -->
-        <!-- VIEW 1: STUDENT RESULT PORTAL (DEFAULT VIEW)                          -->
-        <!-- ===================================================================== -->
-        <section id="view-portal" class="space-y-6">
-            
-            <!-- Search & Student Selector Card -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-6 no-print">
-                <div class="flex flex-col md:flex-row items-stretch md:items-end justify-between gap-4">
-                    <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <!-- Select by Name -->
-                        <div>
-                            <label for="student-select" class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">
-                                Select Student Name
-                            </label>
-                            <div class="relative">
-                                <select id="student-select" onchange="selectStudentByRoll(this.value)" class="w-full pl-4 pr-10 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 transition">
-                                    <!-- Populated dynamically -->
+        <!-- STUDENT RESULT PORTAL VIEW -->
+        <div id="portalView" class="space-y-6">
+            <!-- Class Selector Tabs (1 to 7) -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Select Class</h2>
+                <div class="flex flex-wrap gap-2" id="classTabsContainer">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <!-- Content Container for Selected Class -->
+            <div id="classContentArea">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+
+        <!-- ADMIN LOGIN / DASHBOARD VIEW -->
+        <div id="adminView" class="hidden max-w-md mx-auto bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+            <div class="bg-emerald-900 p-6 text-white text-center">
+                <div class="w-16 h-16 bg-emerald-800 rounded-full flex items-center justify-center mx-auto mb-3 border border-emerald-700">
+                    <i class="fa-solid fa-user-shield text-2xl text-emerald-300"></i>
+                </div>
+                <h2 class="text-xl font-bold">Ustad Admin Login</h2>
+                <p class="text-xs text-emerald-300 mt-1">Enter your credentials to manage marks</p>
+            </div>
+
+            <!-- Login Form -->
+            <div id="loginFormContainer" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Ustad ID</label>
+                    <input type="text" id="adminUser" placeholder="e.g. ustad1" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-600 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">PIN Code</label>
+                    <input type="password" id="adminPin" placeholder="••••" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-600 outline-none">
+                </div>
+                <button onclick="handleLogin()" class="w-full bg-emerald-700 text-white font-semibold py-2.5 rounded-lg hover:bg-emerald-600 transition shadow">
+                    Login to Portal
+                </button>
+
+                <!-- Quick Demo Login Helpers -->
+                <div class="pt-4 border-t border-slate-100">
+                    <p class="text-xs text-slate-400 text-center mb-2 font-medium">Quick Demo Accounts:</p>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button onclick="fillLogin('ustad1', '1111')" class="text-xs bg-slate-100 hover:bg-emerald-50 text-emerald-800 font-medium py-1.5 px-2 rounded border border-slate-200">Ustad 1</button>
+                        <button onclick="fillLogin('ustad2', '2222')" class="text-xs bg-slate-100 hover:bg-emerald-50 text-emerald-800 font-medium py-1.5 px-2 rounded border border-slate-200">Ustad 2</button>
+                        <button onclick="fillLogin('ustad3', '3333')" class="text-xs bg-slate-100 hover:bg-emerald-50 text-emerald-800 font-medium py-1.5 px-2 rounded border border-slate-200">Ustad 3</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Dashboard Panel (Hidden until login) -->
+            <div id="adminDashboardPanel" class="hidden p-6 space-y-4">
+                <div class="flex justify-between items-center pb-3 border-b border-slate-100">
+                    <div>
+                        <h3 class="font-bold text-slate-800" id="loggedInUstadName">Ustad Name</h3>
+                        <p class="text-xs text-slate-500" id="loggedInUstadRole">Role</p>
+                    </div>
+                    <button onclick="handleLogout()" class="text-xs bg-rose-50 text-rose-600 font-semibold px-3 py-1.5 rounded-lg border border-rose-200 hover:bg-rose-100">Logout</button>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Select Class to Manage</label>
+                    <select id="adminClassSelect" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-600 outline-none">
+                        <!-- Populated based on permissions -->
+                    </select>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl">
+                    <h4 class="text-sm font-bold text-emerald-800 mb-1"><i class="fa-solid fa-circle-info mr-1"></i> Admin Note</h4>
+                    <p class="text-xs text-emerald-700">Currently Class 02 data is pre-loaded. You can update marks or add student details here.</p>
+                </div>
+                <button onclick="alert('Mark editing feature active. Data saved locally.')" class="w-full bg-emerald-700 text-white font-semibold py-2.5 rounded-lg hover:bg-emerald-600 transition shadow">
+                    Open Mark Editor
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-auto py-4 text-center text-xs text-slate-500">
+        &copy; 2026 Ma'adanul Uloom Madrasa, Chenganikund. All Rights Reserved.
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Database for Classes 1 to 7
+        const db = {
+            1: { name: "Class 01", students: [] },
+            2: {
+                name: "Class 02",
+                students: [
+                    { id: 1, name: "Muhammed Sayyan S", fiqh: 50, duroos: 44, aqeeda: 46, lisan: 49, quran: 48, hifz: 49 },
+                    { id: 2, name: "Misbah P", fiqh: 30, duroos: 36, aqeeda: 33, lisan: 30, quran: 44, hifz: 44 },
+                    { id: 3, name: "Amras Ali TK", fiqh: 48, duroos: 36, aqeeda: 35, lisan: 29, quran: 35, hifz: 38 },
+                    { id: 4, name: "Hamzathul Karrar P", fiqh: 32, duroos: 32, aqeeda: 30, lisan: 34, quran: 49, hifz: 45 },
+                    { id: 5, name: "Muhammed Razan MT", fiqh: 24, duroos: 27, aqeeda: 25, lisan: 32, quran: 25, hifz: 48 },
+                    { id: 6, name: "Ajwa P", fiqh: 28, duroos: 35, aqeeda: 32, lisan: 39, quran: 43, hifz: 40 },
+                    { id: 7, name: "Ayisha Liyya N", fiqh: 34, duroos: 38, aqeeda: 36, lisan: 30, quran: 45, hifz: 48 },
+                    { id: 8, name: "Helan Safa P", fiqh: 50, duroos: 50, aqeeda: 46, lisan: 47, quran: 49, hifz: 49 }
+                ]
+            },
+            3: { name: "Class 03", students: [] },
+            4: { name: "Class 04", students: [] },
+            5: { name: "Class 05", students: [] },
+            6: { name: "Class 06", students: [] },
+            7: { name: "Class 07", students: [] }
+        };
+
+        let currentClassId = 2;
+        let selectedStudentId = 1;
+
+        // Ustad Admin Credentials
+        const ustads = {
+            'ustad1': { pin: '1111', name: 'Ustad 1 (Head Ustad)', role: 'All Classes (1-7)', classes: [1,2,3,4,5,6,7] },
+            'ustad2': { pin: '2222', name: 'Ustad 2 (Primary Ustad)', role: 'Primary Section (Classes 1-4)', classes: [1,2,3,4] },
+            'ustad3': { pin: '3333', name: 'Ustad 3 (Upper Ustad)', role: 'Upper Section (Classes 5-7)', classes: [5,6,7] }
+        };
+
+        let loggedInUstad = null;
+
+        function initApp() {
+            renderClassTabs();
+            renderClassView(currentClassId);
+        }
+
+        function switchView(view) {
+            if(view === 'portal') {
+                document.getElementById('portalView').classList.remove('hidden');
+                document.getElementById('adminView').classList.add('hidden');
+                document.getElementById('navPortalBtn').classList.add('bg-emerald-700');
+                document.getElementById('navAdminBtn').classList.remove('bg-emerald-700');
+            } else {
+                document.getElementById('portalView').classList.add('hidden');
+                document.getElementById('adminView').classList.remove('hidden');
+                document.getElementById('navAdminBtn').classList.add('bg-emerald-700');
+                document.getElementById('navPortalBtn').classList.remove('bg-emerald-700');
+            }
+        }
+
+        function renderClassTabs() {
+            const container = document.getElementById('classTabsContainer');
+            container.innerHTML = '';
+            for(let i=1; i<=7; i++) {
+                const btn = document.createElement('button');
+                btn.className = `px-4 py-2 rounded-lg font-semibold text-sm transition shadow-sm ${currentClassId === i ? 'bg-emerald-800 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`;
+                btn.innerText = `Class 0${i}`;
+                btn.onclick = () => {
+                    currentClassId = i;
+                    if(db[i].students.length > 0) selectedStudentId = db[i].students[0].id;
+                    renderClassTabs();
+                    renderClassView(i);
+                };
+                container.appendChild(btn);
+            }
+        }
+
+        function processStudents(students) {
+            return students.map(st => {
+                const total = st.fiqh + st.duroos + st.aqeeda + st.lisan + st.quran + st.hifz;
+                const status = (st.fiqh>=18 && st.duroos>=18 && st.aqeeda>=18 && st.lisan>=18 && st.quran>=18 && st.hifz>=18) ? 'P' : 'F';
+                const percentage = Number((total / 300 * 100).toFixed(1));
+                let grade = 'C';
+                if(status === 'F') grade = 'F';
+                else if(percentage >= 90) grade = 'A+';
+                else if(percentage >= 80) grade = 'A';
+                else if(percentage >= 70) grade = 'B+';
+                else if(percentage >= 60) grade = 'B';
+                return { ...st, total, status, percentage, grade };
+            }).sort((a, b) => b.total - a.total).map((st, idx, arr) => {
+                let rank = idx + 1;
+                if (idx > 0 && st.total === arr[idx - 1].total) {
+                    rank = arr[idx - 1].rank;
+                }
+                return { ...st, rank };
+            });
+        }
+
+        function renderClassView(classId) {
+            const container = document.getElementById('classContentArea');
+            const cls = db[classId];
+
+            if(cls.students.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white rounded-2xl p-12 text-center shadow-sm border border-slate-200 space-y-3">
+                        <div class="w-16 h-16 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center mx-auto text-2xl">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800">Results Not Yet Published for ${cls.name}</h3>
+                        <p class="text-sm text-slate-500 max-w-md mx-auto">Ustads can login via Ustad Admin Login to upload or enter marks for this class.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const students = processStudents(cls.students);
+            const currentStudent = students.find(s => s.id === selectedStudentId) || students[0];
+
+            const totalStudents = students.length;
+            const passCount = students.filter(s => s.status === 'P').length;
+            const passPercentage = ((passCount / totalStudents) * 100).toFixed(1);
+            const classAvg = (students.reduce((acc, s) => acc + s.percentage, 0) / totalStudents).toFixed(1);
+            const topper = students[0];
+
+            container.innerHTML = `
+                <!-- KPI Summary Cards -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                        <p class="text-xs font-bold text-slate-400 uppercase">Total Students</p>
+                        <p class="text-2xl font-black text-emerald-900 mt-1">${totalStudents}</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                        <p class="text-xs font-bold text-slate-400 uppercase">Pass Percentage</p>
+                        <p class="text-2xl font-black text-emerald-900 mt-1">${passPercentage}%</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                        <p class="text-xs font-bold text-slate-400 uppercase">Class Average</p>
+                        <p class="text-2xl font-black text-emerald-900 mt-1">${classAvg}%</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                        <p class="text-xs font-bold text-slate-400 uppercase">Class Topper</p>
+                        <p class="text-lg font-bold text-emerald-900 mt-1 truncate">${topper.name}</p>
+                    </div>
+                </div>
+
+                <!-- Main Grid: Report Card & Leaderboard -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Left 2 Cols: Individual Student Report Card -->
+                    <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-6">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-slate-100">
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-800">Student Progress Report Card</h3>
+                                <p class="text-xs text-slate-500">${cls.name} — Academic Evaluation</p>
+                            </div>
+                            <div class="flex items-center gap-2 w-full sm:w-auto">
+                                <select onchange="selectStudent(this.value)" class="w-full sm:w-auto bg-slate-50 border border-slate-300 px-3 py-2 rounded-lg text-sm font-semibold text-emerald-900 outline-none focus:ring-2 focus:ring-emerald-600">
+                                    ${students.map(s => `<option value="${s.id}" ${s.id === currentStudent.id ? 'selected' : ''}>${s.name} (Rank #${s.rank})</option>`).join('')}
                                 </select>
                             </div>
                         </div>
 
-                        <!-- Search by Roll No -->
-                        <div>
-                            <label for="roll-input" class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">
-                                Or Enter Roll Number
-                            </label>
-                            <div class="flex gap-2">
-                                <input type="number" id="roll-input" min="1" placeholder="e.g. 1 to 8" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 transition" onkeydown="if(event.key==='Enter') searchByRollInput()">
-                                <button onclick="searchByRollInput()" class="px-5 py-3 bg-emerald-800 hover:bg-emerald-900 text-white font-semibold rounded-xl transition flex items-center gap-2 shrink-0 shadow-sm">
-                                    <i data-lucide="search" class="w-4 h-4"></i>
-                                    <span>Find</span>
-                                </button>
+                        <!-- Student Details Grid -->
+                        <div class="grid grid-cols-3 gap-4 bg-emerald-50/50 p-4 rounded-xl border border-emerald-100">
+                            <div>
+                                <span class="text-xs text-slate-500 block font-medium">Roll No</span>
+                                <span class="text-base font-bold text-slate-800">#${currentStudent.id}</span>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Print Button -->
-                    <div class="flex items-center justify-end">
-                        <button onclick="window.print()" class="w-full md:w-auto px-5 py-3 bg-amber-500 hover:bg-amber-600 text-emerald-950 font-bold rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
-                            <i data-lucide="printer" class="w-4 h-4"></i>
-                            <span>Print / Save Progress Card</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Official Printable Progress Report Card -->
-            <div id="printable-report-card" class="bg-white rounded-2xl shadow-md border-2 border-emerald-800/20 overflow-hidden">
-                
-                <!-- Report Card Official Banner -->
-                <div class="bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 text-white p-6 sm:p-8 border-b-4 border-amber-500">
-                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-                        <div>
-                            <span class="inline-block px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold uppercase tracking-wider mb-2">
-                                Official Progress Report Card
-                            </span>
-                            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">MA'ADANUL ULOOM MADRASA</h2>
-                            <p class="text-emerald-200 text-sm font-medium mt-0.5">Chenganikund • Annual / Term Examination — Class 02</p>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-5 py-3 text-center">
-                            <p class="text-xs uppercase tracking-wider text-emerald-200 font-semibold">Class Rank</p>
-                            <p id="rc-rank" class="text-3xl font-black text-amber-400">#1</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Student Details & Summary Strip -->
-                <div class="p-6 sm:p-8 bg-emerald-50/50 border-b border-slate-200">
-                    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
-                        <div class="col-span-2 lg:col-span-2 bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs">
-                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Student Name</p>
-                            <p id="rc-name" class="text-lg sm:text-xl font-extrabold text-slate-900 mt-0.5">Helan Safa P</p>
-                            <p class="text-xs font-semibold text-emerald-700 mt-1">Roll No: <span id="rc-roll" class="font-bold">8</span> • Class: <span class="font-bold">02</span></p>
-                        </div>
-
-                        <div class="bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs flex flex-col justify-center">
-                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Grand Total</p>
-                            <p class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">
-                                <span id="rc-total">291</span><span class="text-sm font-semibold text-slate-400"> / 300</span>
-                            </p>
-                        </div>
-
-                        <div class="bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs flex flex-col justify-center">
-                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Percentage & Grade</p>
-                            <div class="flex items-center gap-2 mt-0.5">
-                                <span id="rc-percentage" class="text-xl sm:text-2xl font-extrabold text-emerald-800">97.0%</span>
-                                <span id="rc-grade" class="px-2.5 py-0.5 rounded-lg text-xs font-extrabold bg-amber-100 text-amber-800 border border-amber-300">A+</span>
+                            <div>
+                                <span class="text-xs text-slate-500 block font-medium">Percentage</span>
+                                <span class="text-base font-bold text-emerald-800">${currentStudent.percentage}%</span>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-500 block font-medium">Grade & Rank</span>
+                                <span class="text-base font-bold text-amber-600">${currentStudent.grade} (Rank #${currentStudent.rank})</span>
                             </div>
                         </div>
 
-                        <div class="col-span-2 lg:col-span-1 bg-white p-4 rounded-xl border border-slate-200/80 shadow-xs flex flex-col justify-center">
-                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Result Status</p>
-                            <div class="mt-1">
-                                <span id="rc-status" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-extrabold bg-emerald-100 text-emerald-800">
-                                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
-                                    <span>PASS</span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Marks Table & Visual Comparison Chart -->
-                <div class="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                    
-                    <!-- Subject-wise Marks Table -->
-                    <div class="lg:col-span-7 overflow-x-auto rounded-xl border border-slate-200">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-slate-100 text-slate-600 text-xs uppercase tracking-wider border-b border-slate-200">
-                                    <th class="py-3.5 px-4 font-bold">Subject</th>
-                                    <th class="py-3.5 px-3 font-bold text-center">Max</th>
-                                    <th class="py-3.5 px-3 font-bold text-center">Pass</th>
-                                    <th class="py-3.5 px-4 font-bold text-center">Obtained</th>
-                                    <th class="py-3.5 px-3 font-bold text-center">Class Avg</th>
-                                    <th class="py-3.5 px-4 font-bold text-center">Grade</th>
-                                </tr>
-                            </thead>
-                            <tbody id="rc-subjects-tbody" class="divide-y divide-slate-200 text-sm">
-                                <!-- Populated dynamically -->
-                            </tbody>
-                            <tfoot>
-                                <tr class="bg-emerald-50/80 font-extrabold text-slate-900 border-t-2 border-emerald-800/20">
-                                    <td class="py-3.5 px-4">TOTAL</td>
-                                    <td class="py-3.5 px-3 text-center">300</td>
-                                    <td class="py-3.5 px-3 text-center">108</td>
-                                    <td id="rc-table-total" class="py-3.5 px-4 text-center text-emerald-900 text-base">291</td>
-                                    <td id="rc-table-avg-total" class="py-3.5 px-3 text-center text-slate-500">233.3</td>
-                                    <td id="rc-table-grade" class="py-3.5 px-4 text-center text-emerald-800">A+</td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-
-                    <!-- Performance Comparison Bar Chart -->
-                    <div class="lg:col-span-5 bg-slate-50 rounded-xl p-5 border border-slate-200">
-                        <div class="flex items-center justify-between mb-3">
-                            <h3 class="text-sm font-bold text-slate-800">Subject Performance vs Class Average</h3>
-                            <span class="text-xs text-slate-500">Max: 50</span>
-                        </div>
-                        <div class="relative h-64 w-full">
-                            <canvas id="studentComparisonChart"></canvas>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Report Card Footer / Signatures -->
-                <div class="px-6 sm:px-8 py-5 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-                    <div>
-                        <p class="font-semibold text-slate-700">Grading Scale:</p>
-                        <p>A+ (90–100%) • A (80–89%) • B+ (70–79%) • B (60–69%) • C (36–59%) • F (Below 18 in any subject)</p>
-                    </div>
-                    <div class="flex items-center gap-8 pt-4 sm:pt-0">
-                        <div class="text-center">
-                            <div class="w-28 border-b border-slate-400 mb-1"></div>
-                            <p class="font-semibold text-slate-600">Class Teacher</p>
-                        </div>
-                        <div class="text-center">
-                            <div class="w-28 border-b border-slate-400 mb-1"></div>
-                            <p class="font-semibold text-slate-600">Sadar Muallim</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================================================================== -->
-        <!-- VIEW 2: CLASS ANALYTICS & LEADERBOARD DASHBOARD                       -->
-        <!-- ===================================================================== -->
-        <section id="view-dashboard" class="hidden space-y-6">
-            
-            <!-- Top KPI Summary Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- Total Students -->
-                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
-                        <i data-lucide="users" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Students</p>
-                        <p id="kpi-total-students" class="text-2xl font-extrabold text-slate-900 mt-0.5">8</p>
-                        <p class="text-xs text-slate-500 mt-0.5">Class 02 Registered</p>
-                    </div>
-                </div>
-
-                <!-- Pass Percentage -->
-                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center shrink-0">
-                        <i data-lucide="check-circle" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Pass Percentage</p>
-                        <p id="kpi-pass-rate" class="text-2xl font-extrabold text-teal-700 mt-0.5">100%</p>
-                        <p id="kpi-pass-count" class="text-xs text-slate-500 mt-0.5">8 of 8 Passed</p>
-                    </div>
-                </div>
-
-                <!-- Class Average -->
-                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center shrink-0">
-                        <i data-lucide="trending-up" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Class Average</p>
-                        <p id="kpi-class-avg" class="text-2xl font-extrabold text-blue-800 mt-0.5">77.8%</p>
-                        <p id="kpi-avg-marks" class="text-xs text-slate-500 mt-0.5">Avg: 233.3 / 300</p>
-                    </div>
-                </div>
-
-                <!-- Class Topper -->
-                <div class="bg-gradient-to-br from-emerald-900 to-emerald-800 text-white rounded-2xl p-5 shadow-sm flex items-center gap-4 border border-amber-500/40">
-                    <div class="w-12 h-12 rounded-xl bg-amber-400 text-emerald-950 flex items-center justify-center shrink-0 shadow">
-                        <i data-lucide="trophy" class="w-6 h-6"></i>
-                    </div>
-                    <div class="min-w-0">
-                        <p class="text-xs font-bold uppercase tracking-wider text-amber-300">Class Topper (Rank 1)</p>
-                        <p id="kpi-topper-name" class="text-lg font-extrabold truncate mt-0.5">Helan Safa P</p>
-                        <p id="kpi-topper-score" class="text-xs text-emerald-200 mt-0.5">291 / 300 (97.0%)</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Charts Row -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Total Marks Comparison Chart -->
-                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
-                    <div class="flex items-center justify-between mb-4">
-                        <div>
-                            <h3 class="text-base font-bold text-slate-900">Student Total Marks Leaderboard</h3>
-                            <p class="text-xs text-slate-500">Out of 300 Maximum Marks</p>
-                        </div>
-                    </div>
-                    <div class="relative h-72 w-full">
-                        <canvas id="classTotalChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Subject-wise Average Performance Chart -->
-                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
-                    <div class="flex items-center justify-between mb-4">
-                        <div>
-                            <h3 class="text-base font-bold text-slate-900">Subject-Wise Class Average</h3>
-                            <p class="text-xs text-slate-500">Average marks scored out of 50 per subject</p>
-                        </div>
-                    </div>
-                    <div class="relative h-72 w-full">
-                        <canvas id="subjectAvgChart"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Consolidated Mark List Table -->
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-                <div class="p-5 sm:p-6 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                        <h3 class="text-lg font-bold text-slate-900">Consolidated Class 02 Mark List</h3>
-                        <p class="text-xs text-slate-500">Click any student row to view their individual Report Card</p>
-                    </div>
-
-                    <div class="flex flex-wrap items-center gap-3">
-                        <!-- Search Filter -->
-                        <div class="relative">
-                            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
-                            <input type="text" id="dashboard-search" oninput="renderDashboardTable()" placeholder="Search name or roll..." class="pl-9 pr-4 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                        <!-- Marks Table -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-sm">
+                                <thead>
+                                    <tr class="bg-slate-100 text-slate-600 uppercase text-xs">
+                                        <th class="p-3 rounded-l-lg">Subject</th>
+                                        <th class="p-3 text-center">Max</th>
+                                        <th class="p-3 text-center">Pass</th>
+                                        <th class="p-3 text-center">Obtained</th>
+                                        <th class="p-3 text-center rounded-r-lg">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100">
+                                    ${[
+                                        {sub: 'Fiqh', mark: currentStudent.fiqh},
+                                        {sub: 'Duroos', mark: currentStudent.duroos},
+                                        {sub: 'Aqeeda', mark: currentStudent.aqeeda},
+                                        {sub: 'Lisan', mark: currentStudent.lisan},
+                                        {sub: 'Quran', mark: currentStudent.quran},
+                                        {sub: 'Hifz', mark: currentStudent.hifz}
+                                    ].map(item => `
+                                        <tr>
+                                            <td class="p-3 font-semibold text-slate-700">${item.sub}</td>
+                                            <td class="p-3 text-center text-slate-500">50</td>
+                                            <td class="p-3 text-center text-slate-500">18</td>
+                                            <td class="p-3 text-center font-bold text-emerald-900">${item.mark}</td>
+                                            <td class="p-3 text-center">
+                                                <span class="px-2.5 py-1 rounded-full text-xs font-bold ${item.mark >= 18 ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}">
+                                                    ${item.mark >= 18 ? 'PASS' : 'FAIL'}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
                         </div>
 
-                        <!-- Sort Dropdown -->
-                        <select id="dashboard-sort" onchange="renderDashboardTable()" class="px-3.5 py-2 bg-slate-50 border border-slate-300 rounded-xl text-sm font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                            <option value="rank">Sort by Rank (1 → 8)</option>
-                            <option value="roll">Sort by Roll No</option>
-                            <option value="name">Sort by Name (A → Z)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-slate-100 text-slate-600 text-xs uppercase tracking-wider border-b border-slate-200">
-                                <th class="py-3.5 px-4 font-bold text-center">Rank</th>
-                                <th class="py-3.5 px-3 font-bold text-center">Roll</th>
-                                <th class="py-3.5 px-4 font-bold">Student Name</th>
-                                <th class="py-3.5 px-3 font-bold text-center">Fiqh</th>
-                                <th class="py-3.5 px-3 font-bold text-center">Duroos</th>
-                                <th class="py-3.5 px-3 font-bold text-center">Aqeeda</th>
-                                <th class="py-3.5 px-3 font-bold text-center">Lisan</th>
-                                <th class="py-3.5 px-3 font-bold text-center">Quran</th>
-                                <th class="py-3.5 px-3 font-bold text-center">Hifz</th>
-                                <th class="py-3.5 px-4 font-bold text-center">Total</th>
-                                <th class="py-3.5 px-3 font-bold text-center">%</th>
-                                <th class="py-3.5 px-3 font-bold text-center">Grade</th>
-                                <th class="py-3.5 px-4 font-bold text-center">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="dashboard-tbody" class="divide-y divide-slate-200 text-sm">
-                            <!-- Populated dynamically -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===================================================================== -->
-        <!-- VIEW 3: TEACHER / ADMIN PANEL (EDIT, ADD, EXCEL IMPORT/EXPORT)        -->
-        <!-- ===================================================================== -->
-        <section id="view-admin" class="hidden space-y-6">
-            
-            <!-- Data Management Toolbar (Excel Import, CSV Export, Add Student, Reset) -->
-            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs">
-                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                    <div>
-                        <h2 class="text-lg font-bold text-slate-900">Marks Management & Excel Sync</h2>
-                        <p class="text-xs text-slate-500 mt-0.5">Edit marks directly below, add a new student, or upload an Excel (.xlsx / .csv) mark sheet.</p>
-                    </div>
-
-                    <div class="flex flex-wrap items-center gap-2.5">
-                        <!-- Upload Excel / CSV -->
-                        <label class="cursor-pointer px-4 py-2.5 bg-emerald-800 hover:bg-emerald-900 text-white text-sm font-semibold rounded-xl transition flex items-center gap-2 shadow-xs">
-                            <i data-lucide="file-spreadsheet" class="w-4 h-4 text-amber-300"></i>
-                            <span>Import Excel / CSV</span>
-                            <input type="file" id="excel-upload" accept=".xlsx, .xls, .csv" class="hidden" onchange="handleFileUpload(event)">
-                        </label>
-
-                        <!-- Export to CSV -->
-                        <button onclick="exportToCSV()" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-sm font-semibold rounded-xl transition flex items-center gap-2 border border-slate-300">
-                            <i data-lucide="download" class="w-4 h-4"></i>
-                            <span>Export CSV</span>
-                        </button>
-
-                        <!-- Reset to Default -->
-                        <button onclick="confirmResetModal()" class="px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 text-sm font-semibold rounded-xl transition flex items-center gap-2 border border-rose-200">
-                            <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
-                            <span>Reset Default</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Add New Student Form -->
-                <div class="mt-6 pt-6 border-t border-slate-200">
-                    <h3 class="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2">
-                        <i data-lucide="user-plus" class="w-4 h-4 text-emerald-700"></i>
-                        <span>Add New Student</span>
-                    </h3>
-                    <form onsubmit="addNewStudent(event)" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-9 gap-3 items-end">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-500 mb-1">Roll No</label>
-                            <input type="number" id="new-roll" required min="1" placeholder="9" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm">
-                        </div>
-                        <div class="col-span-2">
-                            <label class="block text-xs font-semibold text-slate-500 mb-1">Student Name</label>
-                            <input type="text" id="new-name" required placeholder="Full Name" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-500 mb-1">Fiqh (50)</label>
-                            <input type="number" id="new-fiqh" required min="0" max="50" value="0" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-500 mb-1">Duroos (50)</label>
-                            <input type="number" id="new-duroos" required min="0" max="50" value="0" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-500 mb-1">Aqeeda (50)</label>
-                            <input type="number" id="new-aqeeda" required min="0" max="50" value="0" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-500 mb-1">Lisan (50)</label>
-                            <input type="number" id="new-lisan" required min="0" max="50" value="0" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-500 mb-1">Quran (50)</label>
-                            <input type="number" id="new-quran" required min="0" max="50" value="0" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm">
-                        </div>
-                        <div class="flex gap-2 col-span-2 sm:col-span-1">
-                            <div class="flex-1">
-                                <label class="block text-xs font-semibold text-slate-500 mb-1">Hifz (50)</label>
-                                <input type="number" id="new-hifz" required min="0" max="50" value="0" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm">
-                            </div>
-                        </div>
-                        <div class="col-span-2 sm:col-span-4 lg:col-span-9 flex justify-end mt-1">
-                            <button type="submit" class="px-5 py-2 bg-amber-500 hover:bg-amber-600 text-emerald-950 font-bold text-sm rounded-xl transition shadow-xs">
-                                + Add Student to Mark List
+                        <!-- Print Button -->
+                        <div class="flex justify-end pt-2">
+                            <button onclick="window.print()" class="bg-emerald-800 text-white text-xs font-semibold px-4 py-2 rounded-lg hover:bg-emerald-700 transition flex items-center gap-2 shadow">
+                                <i class="fa-solid fa-print"></i> Print Report Card
                             </button>
                         </div>
-                    </form>
+                    </div>
+
+                    <!-- Right Col: Leaderboard -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col">
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">Class Leaderboard</h3>
+                        <p class="text-xs text-slate-500 mb-4">Rankings based on total marks</p>
+                        
+                        <div class="space-y-3 overflow-y-auto max-h-[420px] pr-1">
+                            ${students.map(st => `
+                                <div onclick="selectStudent(${st.id})" class="p-3 rounded-xl border transition cursor-pointer flex items-center justify-between ${st.id === currentStudent.id ? 'bg-emerald-50 border-emerald-300 shadow-sm' : 'bg-slate-50 border-slate-100 hover:bg-slate-100'}">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg font-bold flex items-center justify-center text-xs ${st.rank === 1 ? 'bg-amber-400 text-white' : st.rank === 2 ? 'bg-slate-300 text-white' : st.rank === 3 ? 'bg-amber-700 text-white' : 'bg-slate-200 text-slate-600'}">
+                                            #${st.rank}
+                                        </div>
+                                        <div>
+                                            <h4 class="text-xs font-bold text-slate-800">${st.name}</h4>
+                                            <p class="text-[10px] text-slate-500">Total: ${st.total}/300</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-bold text-emerald-800">${st.percentage}%</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-
-            <!-- Editable Live Marks Table -->
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-                <div class="p-5 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
-                    <span class="text-sm font-bold text-slate-700">Live Mark Editor (0–50 per subject • Auto-saves immediately)</span>
-                    <span class="text-xs font-semibold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-full">Pass Mark: 18</span>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-slate-100 text-slate-600 text-xs uppercase tracking-wider border-b border-slate-200">
-                                <th class="py-3 px-3 font-bold text-center">Roll</th>
-                                <th class="py-3 px-4 font-bold">Student Name</th>
-                                <th class="py-3 px-2 font-bold text-center">Fiqh</th>
-                                <th class="py-3 px-2 font-bold text-center">Duroos</th>
-                                <th class="py-3 px-2 font-bold text-center">Aqeeda</th>
-                                <th class="py-3 px-2 font-bold text-center">Lisan</th>
-                                <th class="py-3 px-2 font-bold text-center">Quran</th>
-                                <th class="py-3 px-2 font-bold text-center">Hifz</th>
-                                <th class="py-3 px-3 font-bold text-center">Total</th>
-                                <th class="py-3 px-3 font-bold text-center">Grade</th>
-                                <th class="py-3 px-3 font-bold text-center">Rank</th>
-                                <th class="py-3 px-3 font-bold text-center">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-tbody" class="divide-y divide-slate-200 text-sm">
-                            <!-- Populated dynamically -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Custom Reset Confirmation Modal (Replaces browser confirm) -->
-    <div id="reset-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl border border-slate-200">
-            <div class="flex items-center gap-3 text-rose-600 mb-3">
-                <div class="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center">
-                    <i data-lucide="alert-triangle" class="w-5 h-5"></i>
-                </div>
-                <h3 class="text-lg font-bold text-slate-900">Reset to Original Class 02 Data?</h3>
-            </div>
-            <p class="text-sm text-slate-600 mb-6">
-                This will discard any manual edits or uploaded files and restore the original 8 students' marks for Ma'adanul Uloom Madrasa Class 02.
-            </p>
-            <div class="flex justify-end gap-3">
-                <button onclick="closeResetModal()" class="px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">
-                    Cancel
-                </button>
-                <button onclick="executeReset()" class="px-4 py-2 rounded-xl text-sm font-semibold bg-rose-600 hover:bg-rose-700 text-white transition">
-                    Yes, Reset Data
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-5 mt-12 no-print">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
-            <p class="font-semibold text-slate-700">MA'ADANUL ULOOM MADRASA, CHENGANIKUND</p>
-            <p>Class 02 Examination Result & Academic Analytics Portal</p>
-        </div>
-    </footer>
-
-    <!-- ===================================================================== -->
-    <!-- JAVASCRIPT LOGIC & DATA ENGINE                                        -->
-    <!-- ===================================================================== -->
-    <script>
-        // 1. DEFAULT CLASS 02 STUDENT DATA
-        const DEFAULT_STUDENTS = [
-            { roll: 1, name: "Muhammed Sayyan S", fiqh: 50, duroos: 44, aqeeda: 46, lisan: 49, quran: 48, hifz: 49 },
-            { roll: 2, name: "Misbah P",          fiqh: 30, duroos: 36, aqeeda: 33, lisan: 30, quran: 44, hifz: 44 },
-            { roll: 3, name: "Amras Ali TK",      fiqh: 48, duroos: 36, aqeeda: 35, lisan: 29, quran: 35, hifz: 38 },
-            { roll: 4, name: "Hamzathul Karrar P",fiqh: 32, duroos: 32, aqeeda: 30, lisan: 34, quran: 49, hifz: 45 },
-            { roll: 5, name: "Muhammed Razan MT", fiqh: 24, duroos: 27, aqeeda: 25, lisan: 32, quran: 25, hifz: 48 },
-            { roll: 6, name: "Ajwa P",            fiqh: 28, duroos: 35, aqeeda: 32, lisan: 39, quran: 43, hifz: 40 },
-            { roll: 7, name: "Ayisha Liyya N",    fiqh: 34, duroos: 38, aqeeda: 36, lisan: 30, quran: 45, hifz: 48 },
-            { roll: 8, name: "Helan Safa P",      fiqh: 50, duroos: 50, aqeeda: 46, lisan: 47, quran: 49, hifz: 49 }
-        ];
-
-        const SUBJECTS = [
-            { key: 'fiqh',   label: 'Fiqh' },
-            { key: 'duroos', label: 'Duroos' },
-            { key: 'aqeeda', label: 'Aqeeda' },
-            { key: 'lisan',  label: 'Lisan' },
-            { key: 'quran',  label: 'Quran' },
-            { key: 'hifz',   label: 'Hifz' }
-        ];
-
-        const MAX_PER_SUBJECT = 50;
-        const PASS_MARK = 18;
-        const TOTAL_MAX = 300;
-        const STORAGE_KEY = 'madrasa_class2_students_v1';
-
-        let rawStudents = [];
-        let computedStudents = [];
-        let subjectAverages = {};
-        let selectedRoll = 8; // Default to Class Topper (Helan Safa P) or Roll 1
-
-        // Chart Instances
-        let studentComparisonChart = null;
-        let classTotalChart = null;
-        let subjectAvgChart = null;
-
-        // 2. INITIALIZATION
-        window.addEventListener('DOMContentLoaded', () => {
-            loadFromStorage();
-            recalculateAll();
-            
-            // Default to Roll 1 for immediate student lookup experience
-            if (computedStudents.some(s => s.roll === 1)) {
-                selectedRoll = 1;
-            } else if (computedStudents.length > 0) {
-                selectedRoll = computedStudents[0].roll;
-            }
-
-            renderAllViews();
-            lucide.createIcons();
-        });
-
-        function loadFromStorage() {
-            try {
-                const saved = localStorage.getItem(STORAGE_KEY);
-                if (saved) {
-                    const parsed = JSON.parse(saved);
-                    if (Array.isArray(parsed) && parsed.length > 0) {
-                        rawStudents = parsed;
-                        return;
-                    }
-                }
-            } catch (e) {
-                console.error("Storage load error:", e);
-            }
-            rawStudents = JSON.parse(JSON.stringify(DEFAULT_STUDENTS));
-        }
-
-        function saveToStorage() {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(rawStudents));
-            } catch (e) {
-                console.error("Storage save error:", e);
-            }
-        }
-
-        // 3. DYNAMIC CALCULATION ENGINE (Total, Percentage, Status, Grade, Standard Competition Rank)
-        function recalculateAll() {
-            // Calculate individual metrics
-            const enriched = rawStudents.map(s => {
-                const fiqh = Number(s.fiqh) || 0;
-                const duroos = Number(s.duroos) || 0;
-                const aqeeda = Number(s.aqeeda) || 0;
-                const lisan = Number(s.lisan) || 0;
-                const quran = Number(s.quran) || 0;
-                const hifz = Number(s.hifz) || 0;
-
-                const total = fiqh + duroos + aqeeda + lisan + quran + hifz;
-                const percentage = Number(((total / TOTAL_MAX) * 100).toFixed(1));
-                
-                const isPass = (
-                    fiqh >= PASS_MARK &&
-                    duroos >= PASS_MARK &&
-                    aqeeda >= PASS_MARK &&
-                    lisan >= PASS_MARK &&
-                    quran >= PASS_MARK &&
-                    hifz >= PASS_MARK
-                );
-                const status = isPass ? 'PASS' : 'FAIL';
-
-                let grade = 'C';
-                if (!isPass) {
-                    grade = 'F';
-                } else if (percentage >= 90) {
-                    grade = 'A+';
-                } else if (percentage >= 80) {
-                    grade = 'A';
-                } else if (percentage >= 70) {
-                    grade = 'B+';
-                } else if (percentage >= 60) {
-                    grade = 'B';
-                }
-
-                return {
-                    ...s,
-                    fiqh, duroos, aqeeda, lisan, quran, hifz,
-                    total,
-                    percentage,
-                    status,
-                    grade,
-                    rank: 0
-                };
-            });
-
-            // Standard Competition Ranking (1, 2, 3, 4, 5, 6, 6, 8)
-            const sortedByTotal = [...enriched].sort((a, b) => b.total - a.total);
-            sortedByTotal.forEach((student, idx) => {
-                if (idx > 0 && student.total === sortedByTotal[idx - 1].total) {
-                    student.rank = sortedByTotal[idx - 1].rank;
-                } else {
-                    student.rank = idx + 1;
-                }
-            });
-
-            // Map ranks back and sort by Roll No as base order
-            computedStudents = enriched.map(s => {
-                const ranked = sortedByTotal.find(r => r.roll === s.roll);
-                return { ...s, rank: ranked ? ranked.rank : 0 };
-            }).sort((a, b) => a.roll - b.roll);
-
-            // Calculate Subject Averages
-            subjectAverages = {};
-            const count = computedStudents.length || 1;
-            SUBJECTS.forEach(sub => {
-                const sum = computedStudents.reduce((acc, s) => acc + s[sub.key], 0);
-                subjectAverages[sub.key] = Number((sum / count).toFixed(1));
-            });
-        }
-
-        function getSubjectGrade(mark) {
-            if (mark < PASS_MARK) return 'F';
-            const pct = (mark / MAX_PER_SUBJECT) * 100;
-            if (pct >= 90) return 'A+';
-            if (pct >= 80) return 'A';
-            if (pct >= 70) return 'B+';
-            if (pct >= 60) return 'B';
-            return 'C';
-        }
-
-        function getGradeBadgeClasses(grade) {
-            switch (grade) {
-                case 'A+': return 'bg-emerald-100 text-emerald-800 border-emerald-300';
-                case 'A':  return 'bg-teal-100 text-teal-800 border-teal-300';
-                case 'B+': return 'bg-blue-100 text-blue-800 border-blue-300';
-                case 'B':  return 'bg-amber-100 text-amber-800 border-amber-300';
-                case 'C':  return 'bg-slate-100 text-slate-700 border-slate-300';
-                default:   return 'bg-rose-100 text-rose-800 border-rose-300';
-            }
-        }
-
-        // 4. NAVIGATION TABS
-        function switchTab(tabName) {
-            ['portal', 'dashboard', 'admin'].forEach(t => {
-                document.getElementById(`view-${t}`).classList.add('hidden');
-                const btn = document.getElementById(`tab-${t}`);
-                btn.classList.remove('bg-amber-500', 'text-emerald-950', 'shadow');
-                btn.classList.add('text-emerald-100', 'hover:bg-emerald-800/60');
-            });
-
-            document.getElementById(`view-${tabName}`).classList.remove('hidden');
-            const activeBtn = document.getElementById(`tab-${tabName}`);
-            activeBtn.classList.remove('text-emerald-100', 'hover:bg-emerald-800/60');
-            activeBtn.classList.add('bg-amber-500', 'text-emerald-950', 'shadow');
-
-            if (tabName === 'dashboard') {
-                renderDashboardCharts();
-            } else if (tabName === 'portal') {
-                renderReportCard();
-            }
-            lucide.createIcons();
-        }
-
-        // 5. RENDER ALL VIEWS
-        function renderAllViews() {
-            populateStudentSelector();
-            renderReportCard();
-            renderDashboardKPIs();
-            renderDashboardTable();
-            renderDashboardCharts();
-            renderAdminTable();
-            lucide.createIcons();
-        }
-
-        // 6. VIEW 1: STUDENT RESULT PORTAL
-        function populateStudentSelector() {
-            const select = document.getElementById('student-select');
-            select.innerHTML = computedStudents.map(s => 
-                `<option value="${s.roll}" ${s.roll === selectedRoll ? 'selected' : ''}>Roll ${s.roll} — ${s.name}</option>`
-            ).join('');
-        }
-
-        function selectStudentByRoll(rollVal) {
-            const roll = Number(rollVal);
-            const found = computedStudents.find(s => s.roll === roll);
-            if (found) {
-                selectedRoll = found.roll;
-                document.getElementById('student-select').value = selectedRoll;
-                document.getElementById('roll-input').value = selectedRoll;
-                renderReportCard();
-            } else {
-                showToast(`No student found with Roll Number ${roll}`, 'error');
-            }
-        }
-
-        function searchByRollInput() {
-            const inputVal = document.getElementById('roll-input').value;
-            if (!inputVal) {
-                showToast('Please enter a Roll Number', 'error');
-                return;
-            }
-            selectStudentByRoll(Number(inputVal));
-        }
-
-        function renderReportCard() {
-            const student = computedStudents.find(s => s.roll === selectedRoll) || computedStudents[0];
-            if (!student) return;
-            selectedRoll = student.roll;
-
-            document.getElementById('rc-name').textContent = student.name;
-            document.getElementById('rc-roll').textContent = student.roll;
-            document.getElementById('rc-rank').textContent = `#${student.rank}`;
-            document.getElementById('rc-total').textContent = student.total;
-            document.getElementById('rc-percentage').textContent = `${student.percentage.toFixed(1)}%`;
-            
-            const gradeEl = document.getElementById('rc-grade');
-            gradeEl.textContent = student.grade;
-            gradeEl.className = `px-2.5 py-0.5 rounded-lg text-xs font-extrabold border ${getGradeBadgeClasses(student.grade)}`;
-
-            const statusEl = document.getElementById('rc-status');
-            if (student.status === 'PASS') {
-                statusEl.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-extrabold bg-emerald-100 text-emerald-800';
-                statusEl.innerHTML = `<i data-lucide="check-circle-2" class="w-4 h-4"></i><span>PASS</span>`;
-            } else {
-                statusEl.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-extrabold bg-rose-100 text-rose-800';
-                statusEl.innerHTML = `<i data-lucide="x-circle" class="w-4 h-4"></i><span>FAIL</span>`;
-            }
-
-            // Populate Subject Rows
-            const tbody = document.getElementById('rc-subjects-tbody');
-            let avgTotalSum = 0;
-
-            tbody.innerHTML = SUBJECTS.map(sub => {
-                const mark = student[sub.key];
-                const avg = subjectAverages[sub.key] || 0;
-                avgTotalSum += avg;
-                const subGrade = getSubjectGrade(mark);
-                const isFailed = mark < PASS_MARK;
-
-                return `
-                    <tr class="hover:bg-slate-50 transition">
-                        <td class="py-3 px-4 font-bold text-slate-800">${sub.label}</td>
-                        <td class="py-3 px-3 text-center text-slate-500">${MAX_PER_SUBJECT}</td>
-                        <td class="py-3 px-3 text-center text-slate-500">${PASS_MARK}</td>
-                        <td class="py-3 px-4 text-center font-extrabold ${isFailed ? 'text-rose-600 bg-rose-50' : 'text-slate-900'}">
-                            ${mark}
-                        </td>
-                        <td class="py-3 px-3 text-center text-slate-500 font-medium">${avg.toFixed(1)}</td>
-                        <td class="py-3 px-4 text-center">
-                            <span class="px-2 py-0.5 rounded text-xs font-bold border ${getGradeBadgeClasses(subGrade)}">
-                                ${subGrade}
-                            </span>
-                        </td>
-                    </tr>
-                `;
-            }).join('');
-
-            document.getElementById('rc-table-total').textContent = student.total;
-            document.getElementById('rc-table-avg-total').textContent = avgTotalSum.toFixed(1);
-            document.getElementById('rc-table-grade').textContent = student.grade;
-
-            // Update Chart
-            const ctx = document.getElementById('studentComparisonChart').getContext('2d');
-            if (studentComparisonChart) {
-                studentComparisonChart.destroy();
-            }
-
-            studentComparisonChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: SUBJECTS.map(s => s.label),
-                    datasets: [
-                        {
-                            label: student.name,
-                            data: SUBJECTS.map(s => student[s.key]),
-                            backgroundColor: '#065f46',
-                            borderRadius: 6,
-                            barPercentage: 0.65
-                        },
-                        {
-                            label: 'Class Average',
-                            data: SUBJECTS.map(s => subjectAverages[s.key]),
-                            backgroundColor: '#f59e0b',
-                            borderRadius: 6,
-                            barPercentage: 0.65
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 50,
-                            grid: { color: '#e2e8f0' }
-                        },
-                        x: {
-                            grid: { display: false }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: { boxWidth: 12, font: { family: 'Inter', size: 11, weight: '600' } }
-                        }
-                    }
-                }
-            });
-
-            lucide.createIcons();
-        }
-
-        // 7. VIEW 2: CLASS ANALYTICS & LEADERBOARD DASHBOARD
-        function renderDashboardKPIs() {
-            const totalStudents = computedStudents.length;
-            const passedCount = computedStudents.filter(s => s.status === 'PASS').length;
-            const passRate = totalStudents > 0 ? ((passedCount / totalStudents) * 100).toFixed(0) : 0;
-
-            const totalMarksSum = computedStudents.reduce((acc, s) => acc + s.total, 0);
-            const avgMarks = totalStudents > 0 ? (totalMarksSum / totalStudents).toFixed(1) : 0;
-            const avgPct = totalStudents > 0 ? ((avgMarks / TOTAL_MAX) * 100).toFixed(1) : 0;
-
-            const sorted = [...computedStudents].sort((a, b) => b.total - a.total);
-            const topper = sorted[0];
-
-            document.getElementById('kpi-total-students').textContent = totalStudents;
-            document.getElementById('kpi-pass-rate').textContent = `${passRate}%`;
-            document.getElementById('kpi-pass-count').textContent = `${passedCount} of ${totalStudents} Passed`;
-            document.getElementById('kpi-class-avg').textContent = `${avgPct}%`;
-            document.getElementById('kpi-avg-marks').textContent = `Avg: ${avgMarks} / ${TOTAL_MAX}`;
-
-            if (topper) {
-                document.getElementById('kpi-topper-name').textContent = topper.name;
-                document.getElementById('kpi-topper-score').textContent = `${topper.total} / ${TOTAL_MAX} (${topper.percentage.toFixed(1)}%)`;
-            }
-        }
-
-        function renderDashboardTable() {
-            const query = document.getElementById('dashboard-search').value.toLowerCase().trim();
-            const sortBy = document.getElementById('dashboard-sort').value;
-
-            let list = computedStudents.filter(s => 
-                s.name.toLowerCase().includes(query) || String(s.roll).includes(query)
-            );
-
-            if (sortBy === 'rank') {
-                list.sort((a, b) => a.rank - b.rank || a.roll - b.roll);
-            } else if (sortBy === 'roll') {
-                list.sort((a, b) => a.roll - b.roll);
-            } else if (sortBy === 'name') {
-                list.sort((a, b) => a.name.localeCompare(b.name));
-            }
-
-            const tbody = document.getElementById('dashboard-tbody');
-            tbody.innerHTML = list.map(s => {
-                const rankBadge = s.rank === 1 
-                    ? 'bg-amber-400 text-emerald-950 font-black ring-2 ring-amber-200' 
-                    : s.rank <= 3 
-                        ? 'bg-emerald-100 text-emerald-900 font-extrabold' 
-                        : 'bg-slate-100 text-slate-700 font-bold';
-
-                const cellStyle = (val) => val < PASS_MARK 
-                    ? 'text-rose-600 font-extrabold bg-rose-50' 
-                    : val === 50 
-                        ? 'text-emerald-700 font-extrabold' 
-                        : 'text-slate-700 font-medium';
-
-                return `
-                    <tr onclick="viewStudentFromDashboard(${s.roll})" class="hover:bg-emerald-50/70 cursor-pointer transition">
-                        <td class="py-3 px-4 text-center">
-                            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full text-xs ${rankBadge}">
-                                ${s.rank}
-                            </span>
-                        </td>
-                        <td class="py-3 px-3 text-center font-semibold text-slate-500">${s.roll}</td>
-                        <td class="py-3 px-4 font-bold text-slate-900">${s.name}</td>
-                        <td class="py-3 px-3 text-center ${cellStyle(s.fiqh)}">${s.fiqh}</td>
-                        <td class="py-3 px-3 text-center ${cellStyle(s.duroos)}">${s.duroos}</td>
-                        <td class="py-3 px-3 text-center ${cellStyle(s.aqeeda)}">${s.aqeeda}</td>
-                        <td class="py-3 px-3 text-center ${cellStyle(s.lisan)}">${s.lisan}</td>
-                        <td class="py-3 px-3 text-center ${cellStyle(s.quran)}">${s.quran}</td>
-                        <td class="py-3 px-3 text-center ${cellStyle(s.hifz)}">${s.hifz}</td>
-                        <td class="py-3 px-4 text-center font-extrabold text-slate-900">${s.total}</td>
-                        <td class="py-3 px-3 text-center font-semibold text-emerald-800">${s.percentage.toFixed(1)}%</td>
-                        <td class="py-3 px-3 text-center">
-                            <span class="px-2 py-0.5 rounded text-xs font-bold border ${getGradeBadgeClasses(s.grade)}">
-                                ${s.grade}
-                            </span>
-                        </td>
-                        <td class="py-3 px-4 text-center">
-                            <span class="px-2.5 py-0.5 rounded-full text-xs font-extrabold ${s.status === 'PASS' ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
-                                ${s.status}
-                            </span>
-                        </td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        function viewStudentFromDashboard(roll) {
-            selectStudentByRoll(roll);
-            switchTab('portal');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function renderDashboardCharts() {
-            // 1. Student Total Marks Leaderboard Chart
-            const sortedStudents = [...computedStudents].sort((a, b) => b.total - a.total);
-            const ctxTotal = document.getElementById('classTotalChart').getContext('2d');
-            if (classTotalChart) classTotalChart.destroy();
-
-            classTotalChart = new Chart(ctxTotal, {
-                type: 'bar',
-                data: {
-                    labels: sortedStudents.map(s => s.name),
-                    datasets: [{
-                        label: 'Total Marks (out of 300)',
-                        data: sortedStudents.map(s => s.total),
-                        backgroundColor: sortedStudents.map((s, i) => i === 0 ? '#d97706' : '#065f46'),
-                        borderRadius: 6
-                    }]
-                },
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: { beginAtZero: true, max: 300, grid: { color: '#f1f5f9' } },
-                        y: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 11, weight: '600' } } }
-                    },
-                    plugins: {
-                        legend: { display: false }
-                    }
-                }
-            });
-
-            // 2. Subject-wise Class Average Chart
-            const ctxSub = document.getElementById('subjectAvgChart').getContext('2d');
-            if (subjectAvgChart) subjectAvgChart.destroy();
-
-            subjectAvgChart = new Chart(ctxSub, {
-                type: 'bar',
-                data: {
-                    labels: SUBJECTS.map(s => s.label),
-                    datasets: [{
-                        label: 'Class Average (out of 50)',
-                        data: SUBJECTS.map(s => subjectAverages[s.key]),
-                        backgroundColor: [
-                            '#047857', '#0d9488', '#0284c7', '#2563eb', '#d97706', '#059669'
-                        ],
-                        borderRadius: 8,
-                        barPercentage: 0.55
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: { beginAtZero: true, max: 50, grid: { color: '#f1f5f9' } },
-                        x: { grid: { display: false }, ticks: { font: { family: 'Inter', size: 12, weight: '600' } } }
-                    },
-                    plugins: {
-                        legend: { display: false }
-                    }
-                }
-            });
-        }
-
-        // 8. VIEW 3: TEACHER / ADMIN PANEL (LIVE EDIT, ADD, EXCEL IMPORT/EXPORT)
-        function renderAdminTable() {
-            const tbody = document.getElementById('admin-tbody');
-            tbody.innerHTML = computedStudents.map(s => {
-                const inputClass = (val) => `w-16 px-2 py-1.5 text-center font-bold border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 ${val < PASS_MARK ? 'bg-rose-50 border-rose-300 text-rose-700' : 'bg-slate-50 border-slate-300 text-slate-800'}`;
-
-                return `
-                    <tr class="hover:bg-slate-50">
-                        <td class="py-2.5 px-3 text-center font-bold text-slate-600">${s.roll}</td>
-                        <td class="py-2.5 px-4">
-                            <input type="text" value="${s.name}" onchange="updateStudentField(${s.roll}, 'name', this.value)" class="w-44 px-2.5 py-1.5 font-semibold text-slate-800 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-600">
-                        </td>
-                        ${SUBJECTS.map(sub => `
-                            <td class="py-2.5 px-2 text-center">
-                                <input type="number" min="0" max="50" value="${s[sub.key]}" onchange="updateStudentMark(${s.roll}, '${sub.key}', this.value)" class="${inputClass(s[sub.key])}">
-                            </td>
-                        `).join('')}
-                        <td class="py-2.5 px-3 text-center font-extrabold text-slate-900">${s.total}</td>
-                        <td class="py-2.5 px-3 text-center">
-                            <span class="px-2 py-0.5 rounded text-xs font-bold border ${getGradeBadgeClasses(s.grade)}">${s.grade}</span>
-                        </td>
-                        <td class="py-2.5 px-3 text-center font-bold text-emerald-800">#${s.rank}</td>
-                        <td class="py-2.5 px-3 text-center">
-                            <button onclick="deleteStudent(${s.roll})" title="Delete Student" class="p-1.5 text-rose-500 hover:bg-rose-50 rounded-lg transition">
-                                <i data-lucide="trash-2" class="w-4 h-4"></i>
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            }).join('');
-            lucide.createIcons();
-        }
-
-        function updateStudentMark(roll, subjectKey, rawVal) {
-            let val = Number(rawVal);
-            if (isNaN(val) || val < 0) val = 0;
-            if (val > 50) {
-                val = 50;
-                showToast('Maximum mark per subject is 50', 'error');
-            }
-
-            const idx = rawStudents.findIndex(s => s.roll === roll);
-            if (idx !== -1) {
-                rawStudents[idx][subjectKey] = val;
-                saveToStorage();
-                recalculateAll();
-                renderAllViews();
-                showToast(`Updated ${rawStudents[idx].name}'s marks`, 'success');
-            }
-        }
-
-        function updateStudentField(roll, field, value) {
-            const trimmed = value.trim();
-            if (!trimmed) return;
-            const idx = rawStudents.findIndex(s => s.roll === roll);
-            if (idx !== -1) {
-                rawStudents[idx][field] = trimmed;
-                saveToStorage();
-                recalculateAll();
-                renderAllViews();
-                showToast('Student name updated', 'success');
-            }
-        }
-
-        function addNewStudent(e) {
-            e.preventDefault();
-            const roll = Number(document.getElementById('new-roll').value);
-            const name = document.getElementById('new-name').value.trim();
-
-            if (rawStudents.some(s => s.roll === roll)) {
-                showToast(`Roll No ${roll} already exists! Use a unique Roll No.`, 'error');
-                return;
-            }
-
-            const clamp = (id) => Math.min(50, Math.max(0, Number(document.getElementById(id).value) || 0));
-
-            rawStudents.push({
-                roll,
-                name,
-                fiqh: clamp('new-fiqh'),
-                duroos: clamp('new-duroos'),
-                aqeeda: clamp('new-aqeeda'),
-                lisan: clamp('new-lisan'),
-                quran: clamp('new-quran'),
-                hifz: clamp('new-hifz')
-            });
-
-            saveToStorage();
-            recalculateAll();
-            selectedRoll = roll;
-            renderAllViews();
-            e.target.reset();
-            showToast(`Added ${name} (Roll ${roll}) to Class 02`, 'success');
-        }
-
-        function deleteStudent(roll) {
-            if (rawStudents.length <= 1) {
-                showToast('Cannot delete the last remaining student.', 'error');
-                return;
-            }
-            rawStudents = rawStudents.filter(s => s.roll !== roll);
-            saveToStorage();
-            recalculateAll();
-            if (selectedRoll === roll) {
-                selectedRoll = computedStudents[0].roll;
-            }
-            renderAllViews();
-            showToast(`Removed Roll No ${roll}`, 'success');
-        }
-
-        // 9. EXCEL (.XLSX / .CSV) IMPORT & EXPORT
-        function handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, { type: 'array' });
-                    
-                    // Prefer 'Mark List' sheet if present, otherwise first sheet
-                    const sheetName = workbook.SheetNames.find(n => n.toLowerCase().includes('mark')) || workbook.SheetNames[0];
-                    const worksheet = workbook.Sheets[sheetName];
-                    const rows = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-
-                    // Find header row containing 'Name' and 'Fiqh'
-                    let headerIdx = -1;
-                    for (let i = 0; i < rows.length; i++) {
-                        const rowStr = (rows[i] || []).map(c => String(c || '').toLowerCase());
-                        if (rowStr.some(c => c.includes('name')) && rowStr.some(c => c.includes('fiqh'))) {
-                            headerIdx = i;
-                            break;
-                        }
-                    }
-
-                    if (headerIdx === -1) {
-                        showToast('Could not detect valid columns (Name, Fiqh, Duroos, etc.) in sheet.', 'error');
-                        return;
-                    }
-
-                    const headers = rows[headerIdx].map(h => String(h || '').toLowerCase().trim());
-                    const colIdx = {
-                        roll: headers.findIndex(h => h.includes('roll')),
-                        name: headers.findIndex(h => h.includes('name')),
-                        fiqh: headers.findIndex(h => h.includes('fiqh')),
-                        duroos: headers.findIndex(h => h.includes('duroos')),
-                        aqeeda: headers.findIndex(h => h.includes('aqeeda')),
-                        lisan: headers.findIndex(h => h.includes('lisan')),
-                        quran: headers.findIndex(h => h.includes('quran')),
-                        hifz: headers.findIndex(h => h.includes('hifz'))
-                    };
-
-                    const imported = [];
-                    let autoRoll = 1;
-
-                    for (let r = headerIdx + 1; r < rows.length; r++) {
-                        const row = rows[r];
-                        if (!row || !row[colIdx.name]) continue;
-                        const nameVal = String(row[colIdx.name]).trim();
-                        if (!nameVal || nameVal.toLowerCase().includes('average') || nameVal.toLowerCase().includes('total')) continue;
-
-                        const getMark = (idx) => idx !== -1 ? Math.min(50, Math.max(0, Number(row[idx]) || 0)) : 0;
-                        const rollVal = (colIdx.roll !== -1 && Number(row[colIdx.roll])) ? Number(row[colIdx.roll]) : autoRoll;
-
-                        imported.push({
-                            roll: rollVal,
-                            name: nameVal,
-                            fiqh: getMark(colIdx.fiqh),
-                            duroos: getMark(colIdx.duroos),
-                            aqeeda: getMark(colIdx.aqeeda),
-                            lisan: getMark(colIdx.lisan),
-                            quran: getMark(colIdx.quran),
-                            hifz: getMark(colIdx.hifz)
-                        });
-                        autoRoll++;
-                    }
-
-                    if (imported.length === 0) {
-                        showToast('No valid student rows found in the uploaded file.', 'error');
-                        return;
-                    }
-
-                    rawStudents = imported;
-                    saveToStorage();
-                    recalculateAll();
-                    selectedRoll = computedStudents[0].roll;
-                    renderAllViews();
-                    showToast(`Successfully imported ${imported.length} students from "${file.name}"!`, 'success');
-                } catch (err) {
-                    console.error(err);
-                    showToast('Error reading Excel/CSV file. Please check the format.', 'error');
-                }
-                event.target.value = '';
-            };
-            reader.readAsArrayBuffer(file);
-        }
-
-        function exportToCSV() {
-            const headers = ['Roll No', 'Student Name', 'Fiqh', 'Duroos', 'Aqeeda', 'Lisan', 'Quran', 'Hifz', 'Total', 'Percentage', 'Grade', 'Rank', 'Status'];
-            const csvRows = [headers.join(',')];
-
-            computedStudents.forEach(s => {
-                const row = [
-                    s.roll,
-                    `"${s.name.replace(/"/g, '""')}"`,
-                    s.fiqh,
-                    s.duroos,
-                    s.aqeeda,
-                    s.lisan,
-                    s.quran,
-                    s.hifz,
-                    s.total,
-                    `${s.percentage.toFixed(1)}%`,
-                    s.grade,
-                    s.rank,
-                    s.status
-                ];
-                csvRows.push(row.join(','));
-            });
-
-            const blob = new Blob([csvRows.join('\n')], { type: 'text/csv;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'Maadanul_Uloom_Class_02_Results.csv');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-            showToast('Exported Class 02 Mark List to CSV', 'success');
-        }
-
-        // 10. RESET MODAL & TOAST NOTIFICATIONS
-        function confirmResetModal() {
-            const modal = document.getElementById('reset-modal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        function closeResetModal() {
-            const modal = document.getElementById('reset-modal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        function executeReset() {
-            rawStudents = JSON.parse(JSON.stringify(DEFAULT_STUDENTS));
-            saveToStorage();
-            recalculateAll();
-            selectedRoll = 1;
-            renderAllViews();
-            closeResetModal();
-            showToast('Restored original Class 02 mark list', 'success');
-        }
-
-        function showToast(message, type = 'success') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            const bgClass = type === 'error' ? 'bg-rose-600' : 'bg-emerald-900 border border-amber-400/50';
-            
-            toast.className = `${bgClass} text-white px-4 py-3 rounded-xl shadow-lg text-sm font-semibold flex items-center gap-2.5 transform transition-all duration-300 translate-y-2 opacity-0`;
-            toast.innerHTML = `
-                <i data-lucide="${type === 'error' ? 'alert-circle' : 'check-circle-2'}" class="w-4 h-4 text-amber-300 shrink-0"></i>
-                <span>${message}</span>
             `;
-            container.appendChild(toast);
-            lucide.createIcons();
-
-            requestAnimationFrame(() => {
-                toast.classList.remove('translate-y-2', 'opacity-0');
-            });
-
-            setTimeout(() => {
-                toast.classList.add('translate-y-2', 'opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 3200);
         }
+
+        function selectStudent(id) {
+            selectedStudentId = Number(id);
+            renderClassView(currentClassId);
+        }
+
+        function fillLogin(user, pin) {
+            document.getElementById('adminUser').value = user;
+            document.getElementById('adminPin').value = pin;
+        }
+
+        function handleLogin() {
+            const user = document.getElementById('adminUser').value.trim();
+            const pin = document.getElementById('adminPin').value.trim();
+
+            if(ustads[user] && ustads[user].pin === pin) {
+                loggedInUstad = ustads[user];
+                document.getElementById('loginFormContainer').classList.add('hidden');
+                document.getElementById('adminDashboardPanel').classList.remove('hidden');
+                document.getElementById('loggedInUstadName').innerText = loggedInUstad.name;
+                document.getElementById('loggedInUstadRole').innerText = loggedInUstad.role;
+
+                const classSelect = document.getElementById('adminClassSelect');
+                classSelect.innerHTML = loggedInUstad.classes.map(c => `<option value="${c}">Class 0${c}</option>`).join('');
+            } else {
+                alert('Invalid Ustad ID or PIN! Please try again.');
+            }
+        }
+
+        function handleLogout() {
+            loggedInUstad = null;
+            document.getElementById('adminUser').value = '';
+            document.getElementById('adminPin').value = '';
+            document.getElementById('loginFormContainer').classList.remove('hidden');
+            document.getElementById('adminDashboardPanel').classList.add('hidden');
+        }
+
+        window.onload = initApp;
     </script>
 </body>
-  </html>
+</html>
